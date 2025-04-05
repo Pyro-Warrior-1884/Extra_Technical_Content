@@ -1,0 +1,86 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def display(self):
+         if self.head is None:
+             print("Linked List is Empty")
+         else:
+             n = self.head
+             while n is not None:
+                 print(n.data," --> ",end = " ")                
+                 n=n.next
+             print("\n")
+             
+    def add_begin(self,data):
+        new_node = Node(data)
+        new_node.next = self.head 
+        self.head = new_node  
+        
+    def Find_Size(self):
+        present_node = self.head
+        size = 0
+        while present_node is not None:
+            present_node = present_node.next
+            size = size + 1
+        return size
+    
+    def Reverse_List(self,node):
+       future_node = None
+       previous_node = None
+       present_node = node
+
+       while present_node is not None:
+           future_node = present_node.next
+           present_node.next = previous_node
+           previous_node = present_node
+           present_node = future_node
+    
+       head = previous_node  
+       return head
+    
+    def Check_Palindrome(self):
+        size = self.Find_Size()
+        
+        
+        second_node = self.head
+        for i in range(0,size//2 - 1,1):
+            second_node = second_node.next
+            
+        if size%2 == 0:
+            next_node = second_node.next
+            second_node.next = None
+        else:
+            next_node = second_node.next.next
+            second_node.next.next = None
+        
+        Head_1 = self.head
+        Head_2 = self.Reverse_List(next_node)
+        present_node_1 = Head_1
+        present_node_2 = Head_2
+           
+        for i in range(0,size//2,1):
+            if present_node_1.data != present_node_2.data:
+                print("The Linked List is not a Palindrome")
+                return
+            present_node_1 = present_node_1.next
+            present_node_2 = present_node_2.next            
+        print("The Linked List is a Palindrome")
+            
+        
+    
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+LL = LinkedList()
+LL.add_begin(1)
+LL.add_begin(2)
+LL.add_begin(3)
+LL.add_begin(2)
+LL.add_begin(3)
+LL.display()
+LL.Check_Palindrome()
+        
+        

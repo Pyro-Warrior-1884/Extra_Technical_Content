@@ -1,0 +1,69 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int i,j,m,n,k,temp;
+    cin>>n>>m;
+    int a[n];
+    int b[m];
+    
+    for (i=0;i<n;i++){
+        cin>>a[i];
+    }
+    for (i=0;i<m;i++){
+        cin>>b[i];
+    }
+    
+    for (i=0;i<n-1;i++){
+        for (j=0;j<n-i-1;j++){
+            if (a[j]>a[j+1]){
+                temp=a[j];
+                a[j]=a[j+1];
+                a[j+1]=temp;
+            }
+        }
+    }
+    for (i=0;i<m-1;i++){
+        for (j=0;j<m-i-1;j++){
+            if (b[j]>b[j+1]){
+                temp=b[j];
+                b[j]=b[j+1];
+                b[j+1]=temp;
+            }
+        }
+    }
+    
+    for (i=0;i<m;i++){
+        for (j=0;j<n-1;j++){
+            if (a[j]<b[i] && a[j+1]>b[i]){
+                temp=b[i];
+                b[i]=a[n-1];
+                for (k=n-1;k>j+1;k--){
+                    a[k]=a[k-1];
+                }
+                a[j+1]=temp;
+            }
+        }
+    }
+    
+    for (i=0;i<m-1;i++){
+        for (j=0;j<m-i-1;j++){
+            if (b[j]>b[j+1]){
+                temp=b[j];
+                b[j]=b[j+1];
+                b[j+1]=temp;
+            }
+        }
+    }
+    
+    for (i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
+    for (i=0;i<m;i++){
+        cout<<b[i]<<" ";
+    }
+    
+    return 0;
+}

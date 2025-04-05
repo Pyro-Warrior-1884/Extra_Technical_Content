@@ -1,0 +1,86 @@
+word = input()
+word = list(word.upper())
+for i in range(len(word)):
+    Equip = word[i]
+    while ord(Equip) < 65 or ord(Equip) > 90:
+        print()
+        print(Equip,"is Incorrect Input Character")
+        print("Replace with New Character")
+        Equip = input("Enter the New Character: ")
+        Equip = Equip.upper()
+        word[i] = Equip        
+        
+goal = ['_' for i in range(len(word))]
+alphabet = list(chr(i) for i in range(65,91,1))
+
+attempts = 11
+flag = True
+while flag:    
+    print("\nThe Word: ")
+    for i in range(len(goal)):
+        print(goal[i],end=' ')   
+    
+    print("\n\nOptions: ")
+    i = 0
+    if len(alphabet)%4 != 0:
+        limit = len(alphabet)//4
+    m=0
+    while m<limit:
+        for j in range(4):
+            print(alphabet[i],end=' ')
+            i=i+1        
+        print()
+        m += 1
+    
+    for j in range(len(alphabet)%4):
+        print(alphabet[i],end=' ')
+        i += 1
+        
+    some = input("\n\nEnter A Letter: ")
+    some = list(some.upper())
+    letter = some[0]
+    
+    while letter not in alphabet:
+        print("Character is Not in The Options Given")
+        some = input("Enter A Letter: ")
+        some = list(some.upper())
+        letter = some[0]
+    
+    check = False
+    for i in range(len(word)):
+        if letter == word[i]:
+            goal[i] = letter
+            check = True
+    if letter in alphabet:
+        alphabet.remove(letter)
+            
+    if not check:        
+        
+        print("\nWrong,",letter," is Not in this Word")
+        attempts -= 1
+        print("You have",attempts,"left\n")
+        
+    else:
+        print("\nCongradulations",letter,"is in this Word")
+        
+        
+    if attempts == 0:
+        print("You Have Lost")
+        print("So Get Lost")
+        flag = False
+        
+    mark = True
+    for i in range(len(goal)):
+        if goal[i] == '_':
+            mark = False
+    if mark:
+        for i in range(len(goal)):
+            print(goal[i],end=' ')
+        print()
+        print("Congrats You Got Correct Answer")
+        flag = False
+        
+    
+
+    
+

@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int n,i,mid,part1,part2;
+    cin>>n;
+    int a[n];
+    for (i=0;i<n;i++){
+        cin>>a[i];
+    }
+    mid=1;
+    part1=0;
+    part2=0;
+    while(mid<n){
+        for (i=0;i<mid;i++){
+            part1=part1+a[i];
+        }
+        for (i=mid+1;i<n;i++){
+            part2=part2+a[i];
+        }
+        
+        if (part1==part2){
+            cout<<mid+1;
+            break;
+        } else {
+            mid++;
+            part1=0;
+            part2=0;
+        }
+    }
+    return 0;
+} 

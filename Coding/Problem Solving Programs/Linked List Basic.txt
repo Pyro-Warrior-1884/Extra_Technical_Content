@@ -1,0 +1,159 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def display(self):
+        if self.head is None:
+            print("Linked List is Empty")
+        else:
+            n = self.head
+            while n is not None:
+                print(n.data," --> ",end = " ")                
+                n=n.next
+            print("\n")
+            
+    def add_begin(self,data):
+        new_node = Node(data)
+        new_node.next = self.head 
+        self.head = new_node      
+
+    def add_end(self,data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node  
+        else:
+            n = self.head
+            while n.next is not None:
+                n = n.next
+            n.next = new_node
+            
+    def add_after(self,data,after):
+        present_node = self.head
+        new_node = Node(data)
+        while present_node is not None:
+            if after == present_node.data:
+                break
+            present_node = present_node.next
+        
+        if present_node is None:
+            print("Node is not present in the linked list")
+        else:
+            new_node.next = present_node.next
+            present_node.next = new_node
+            
+    def add_before(self,data,before):
+        present_node = self.head
+        new_node = Node(data)
+        if self.head is None:
+            print("Linked List is empty")
+            return
+        
+        if self.head.data == before:
+            new_node.next = self.head 
+            self.head = new_node   
+            return
+        else:
+            while present_node.next is not None:
+                if present_node.next.data == before:
+                    break
+                present_node = present_node.next
+            if present_node.next is None:
+                print("Node is Not Found")
+            else:
+                new_node.next = present_node.next
+                present_node.next = new_node
+                
+            
+    def delete_begin(self):
+        if self.head is None:
+            print("Linked List is Already Empty")
+            return
+        else:
+            self.head = self.head.next
+            
+    def delete_end(self):
+        if self.head is None:
+            print("Linked List is Already Empty")
+            return
+        else:
+            present_node = self.head
+            while present_node.next.next is not None:
+                present_node = present_node.next
+            present_node.next = None
+            
+    def delete_middle(self,value):
+        if self.head is None:
+            print("Linked is Already Empty")
+            return
+        else:
+            present_node = self.head
+            while present_node.next is not None:
+                if present_node.next.data == value:
+                    break
+                present_node = present_node.next
+                
+            if present_node.next is None:
+                print("Node is not Present in the Linked List")
+            else:
+                present_node.next = present_node.next.next
+                
+                
+            
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next =  None
+        
+LL = LinkedList()
+print("1. Add Node In The Beginning \n2. Add Element In The End \n3. Add Element After a Node \n4. Add Element Before a Node")
+print("5. Delete Node In The Beginning \n6. Delete Node In The End \n7. Delete a Selected Node")
+print("8. Display Linked List \n9. Quit \n")
+
+while True:
+    choice = int(input("Enter Your Choice: "))
+    if choice == 1:        
+        x = int(input("How many nodes would you like to add: "))
+        for i in range(0,x,1):
+            data = int(input("Enter the Data: "))
+            LL.add_begin(data)
+            
+    elif choice == 2:
+        x = int(input("How many nodes would you like to add: "))
+        for i in range(0,x,1):
+            data = int(input("Enter the Data: "))
+            LL.add_end(data)
+            
+    elif choice == 3:
+        value = int(input("Enter the Node Data to Add After: "))
+        data = int(input("Enter the Data: "))
+        LL.add_after(data, value)
+    
+    elif choice == 4:
+        value = int(input("Enter the Node Data to Add Before: "))
+        data = int(input("Enter the Data: "))
+        LL.add_before(data, value)
+        
+    elif choice == 5:
+        LL.delete_begin()
+        
+    elif choice == 6:
+        LL.delete_end()
+        
+    elif choice == 7:
+        data = int(input("Enter the Node Data to be Deleted: "))
+        LL.delete_middle(data)
+        
+    elif choice == 8:
+        LL.display()
+        
+    elif choice == 9:
+        print("Thank You and Have a Nice Day")
+        break
+        
+    else:
+        print("Invalid Choice")
+        break
+        
+        
+            

@@ -1,0 +1,39 @@
+Enter_String = input("Enter A Message of Your Choice: ")
+hello = list(Enter_String)
+some = []
+
+for i in range(len(hello)):
+    if hello[i] > chr(64) and hello[i]< chr(91):
+        flag = True
+        j = 65
+        some.append(chr(j))
+        while flag == True:            
+                some[i] = chr(j)
+                word = ""
+                for k in range(len(some)):
+                    word = word + some[k]
+                print(word)
+                if some[i] == hello[i]:
+                    flag = False                
+                j = j + 1
+                
+    elif hello[i] > chr(96) and hello[i]< chr(123):
+        flag = True
+        j = 97
+        some.append(chr(j))
+        while flag == True:            
+                some[i] = chr(j)
+                word = ""
+                for k in range(len(some)):
+                    word = word + some[k]
+                print(word)
+                if some[i] == hello[i]:
+                    flag = False      
+                j = j + 1
+                
+    else:
+        some.append(hello[i])
+        word = ""
+        for k in range(len(some)):
+            word = word + some[k]
+        print(word)

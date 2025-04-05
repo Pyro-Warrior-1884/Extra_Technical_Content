@@ -1,0 +1,22 @@
+def location(x,y,m,n):
+    if x == m-1 and y == n-1:
+        return 1
+    if x >= m or y >= n:
+        return 0
+    else:
+        return location(x+1,y,m,n) + location(x, y+1,m,n)
+
+m = int(input())
+n = int(input())
+'''for i in range(0,m,1):
+    row = []
+    print("Enter the Row elements")
+    for j in range(0,n,1):
+        num = int(input())
+        row.append(num)
+    array.append(row)
+print(array)'''
+
+x = 0
+y = 0
+print(location(x,y,m,n))

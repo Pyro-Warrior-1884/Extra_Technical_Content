@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int n,i,k,K,temp,check;
+    cin>>n;
+    int a[n];
+    for (i=0;i<n;i++){
+        cin>>a[i];
+    }
+    cin>>K;
+    k=0;
+    check=0;
+    while (k<K){
+        if (a[k]>a[check]){
+            temp=a[k];
+            a[k]=a[check];
+            a[check]=temp;
+        }
+        check++;
+        if (check==n){
+            k++;
+            check=k;
+        }
+    }
+    cout<<a[K-1];
+    return 0;
+} 

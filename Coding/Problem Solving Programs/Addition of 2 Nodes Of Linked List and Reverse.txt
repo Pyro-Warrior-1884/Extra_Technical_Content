@@ -1,0 +1,92 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    
+    def add_begin(self,data):
+        n = Node(data)        
+        if self.head == None:
+            self.head = n
+        else:
+            n.next = self.head
+            self.head = n
+            
+            
+    def reverse2(self):
+
+    
+       future_node = None
+       previous_node = None
+       present_node = self.head
+
+       while present_node is not None:
+           future_node = present_node.next
+           present_node.next = previous_node
+           previous_node = present_node
+           present_node = future_node
+    
+       self.head = previous_node  
+    
+   
+
+
+                
+    def display(self):
+        present_node = self.head
+        while present_node is not None:
+            print(present_node.data," ",end ='')
+            present_node = present_node.next             
+        print("\n")
+        
+        
+    
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+def addition(list1,list2):
+    present_node_1 = list1.head
+    present_node_2 = list2.head
+    
+    number_1 = 0 
+    number_2 = 0
+    c=0
+    
+    while present_node_1 is not None:      
+        number_1 = number_1*10 + present_node_1.data
+        c=c+1       
+        present_node_1 = present_node_1.next
+        
+    c=0        
+    while present_node_2 is not None:      
+        number_2 = number_2*10 + present_node_2.data
+        c=c+1       
+        present_node_2 = present_node_2.next
+    
+    number = number_1 + number_2  
+    LL3 = LinkedList()
+    while number > 0:
+        x=number%10
+        LL3.add_begin(x)
+        number = number//10
+    LL3.reverse2()
+    LL3.display()
+    
+        
+LL1 = LinkedList()
+LL1.add_begin(5)
+LL1.add_begin(4)
+LL1.add_begin(3)
+LL1.add_begin(2)
+LL1.add_begin(1)
+LL1.reverse2()
+LL2 = LinkedList()
+LL2.add_begin(1)
+LL2.add_begin(2)
+LL2.add_begin(3)
+LL2.add_begin(4)
+LL2.add_begin(6)
+LL2.reverse2()
+
+addition(LL1, LL2)

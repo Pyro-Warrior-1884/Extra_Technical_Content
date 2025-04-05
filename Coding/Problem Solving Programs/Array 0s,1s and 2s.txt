@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int i,a,b,c,n,x,j;
+    cin>>n;
+    int arr[n],one[n],two[n],zero[n],ex[n];
+    for (i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    
+    a=0;
+    b=0;
+    c=0;
+    for (i=0;i<n;i++){
+        if (arr[i]==0){
+            zero[a]=arr[i];
+            a++;
+        } else if (arr[i]==1){
+            one[b]=arr[i];
+            b++;
+        } else {
+            two[c]=arr[i];
+            c++;
+        }
+    }
+    if (n==(a+b+c)){
+        for (i=0;i<a;i++){
+            ex[i]=zero[i];
+        }
+        x=0;
+        for (i=a;i<(a+b);i++){
+            ex[i]=one[x];
+            x++;
+        }
+        x=0;
+        for (i=(a+b);i<n;i++){
+            ex[i]=two[x];
+            x++;
+        }
+    }
+    for (i=0;i<n;i++){
+        cout<<ex[i]<<", ";
+    }
+    
+    return 0;
+}

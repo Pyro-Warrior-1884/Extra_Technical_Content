@@ -1,0 +1,125 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def add_begin(self,data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+        
+        
+    def display(self):
+        present_node = self.head
+        while present_node is not None:
+            print(present_node.data," ",end = '')
+            present_node = present_node.next
+        print("\n") 
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+def find_intersection(list1,list2):
+    present_node_1 = list1.head
+    present_node_2 = list2.head
+    size_1 = 0 
+    size_2 = 0 
+    equal = 0
+    
+    #Find Size of both Lists
+    while present_node_1 is not None:
+        size_1 = size_1 + 1
+        present_node_1 = present_node_1.next   
+    present_node_1 = list1.head
+    
+    while present_node_2 is not None:
+        size_2 = size_2 + 1
+        present_node_2 = present_node_2.next   
+    present_node_2 = list2.head
+        
+    #Equalize both List Sizes
+    if size_1 != size_2:
+        if size_1 > size_2:
+            diff = size_1 - size_2
+            for i in range(0,diff,1):
+                present_node_1 = present_node_1.next            
+            size_1 = size_1 - diff
+        else:
+            diff = size_2 - size_1
+            for i in range(0,diff,1):
+                present_node_2 = present_node_2.next            
+            size_2 = size_2 - diff                
+        
+    else: 
+        present_node_1 = list1.head
+        present_node_2 = list2.head        
+        
+    #Collecting Data whether Intersecting or Not
+    for i in range(0,size_1,1):
+        if present_node_1.data == present_node_2.data:
+            equal = equal + 1             
+        else: 
+            if equal > 0: 
+                equal = 0 
+        present_node_1 = present_node_1.next
+        present_node_2 = present_node_2.next
+    
+    #ReAcquiring Original Sizes of Both Lists
+    size_1 = 0 
+    size_2 = 0 
+    present_node_1 = list1.head
+    present_node_2 = list2.head
+    while present_node_1 is not None:
+        size_1 = size_1 + 1
+        present_node_1 = present_node_1.next    
+    present_node_1 = list1.head
+    
+    while present_node_2 is not None:
+        size_2 = size_2 + 1
+        present_node_2 = present_node_2.next    
+    present_node_2 = list2.head
+    
+    #Checking if Intersection is Occuring 
+    if equal > 0:
+        print("The Lists are Intersecting")
+        print("The intersecting Node: ")
+        
+        if size_1 >= size_2:
+            present_node_2 = list2.head
+            x = size_2 - equal
+            for i in range(0,x,1):
+                present_node_2 = present_node_2.next
+            intersecting_node = present_node_2
+            
+        else:
+            present_node_1 = list1.head
+            x = size_1 - equal            
+            for i in range(0,x,1):
+                present_node_1 = present_node_1.next                
+            intersecting_node = present_node_1            
+        print(intersecting_node.data)
+        
+    else:
+        print("The Lists are Not Intersecting")
+
+        
+LL1 = LinkedList()
+LL1.add_begin(4)
+LL1.add_begin(2)
+LL1.add_begin(1)
+LL1.add_begin(3)
+LL1.add_begin(1)
+LL1.display()
+
+LL2 = LinkedList()
+LL2.add_begin(4)
+LL2.add_begin(2)
+LL2.add_begin(3)
+LL2.display()
+
+find_intersection(LL1, LL2)
+
+
+
+

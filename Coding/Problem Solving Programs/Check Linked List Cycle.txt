@@ -1,0 +1,66 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def display(self):
+         if self.head is None:
+             print("Linked List is Empty")
+         else:
+             n = self.head
+             while n is not None:
+                 print(n.data," --> ",end = " ")                
+                 n=n.next
+             print("\n")
+             
+    def add_begin(self,data):
+        new_node = Node(data)
+        new_node.next = self.head 
+        self.head = new_node  
+        
+    def Find_Size(self):
+        present_node = self.head
+        size = 0
+        while present_node is not None:
+            present_node = present_node.next
+            size = size + 1
+        return size
+        
+    def Connect(self):
+        present_node = self.head
+        for i in range(0,self.Find_Size()//2,1):
+            present_node = present_node.next
+        Connection = present_node
+        while present_node.next is not None:
+            present_node = present_node.next
+        present_node.next = Connection
+        
+        
+    def Check_Loop(self):
+        slow = self.head
+        fast = self.head.next.next
+        while slow is not None and fast is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                print("The Linked List is in a Loop")
+                break
+        if slow!=fast:
+            print("Linked List is not in a Loop")
+    
+    
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+LL = LinkedList()
+LL.add_begin(1)
+LL.add_begin(2)
+LL.add_begin(3)
+LL.add_begin(2)
+LL.add_begin(3)
+LL.add_begin(4)
+#LL.Connect()
+LL.Check_Loop()
+        
+        

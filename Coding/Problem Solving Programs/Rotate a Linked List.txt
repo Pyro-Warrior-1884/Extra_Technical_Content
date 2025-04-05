@@ -1,0 +1,62 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def display(self):
+         if self.head is None:
+             print("Linked List is Empty")
+         else:
+             n = self.head
+             while n is not None:
+                 print(n.data," --> ",end = " ")                
+                 n=n.next
+             print("\n")
+             
+    def add_begin(self,data):
+        new_node = Node(data)
+        new_node.next = self.head 
+        self.head = new_node  
+        
+    def Find_Size(self):
+        present_node = self.head
+        size = 0
+        while present_node is not None:
+            present_node = present_node.next
+            size = size + 1
+        return size
+    
+    def RightShift(self):
+        k = int(input("Enter the Amount to Shift by: "))
+        present_node = self.head
+        size = self.Find_Size()
+        while present_node.next is not None:
+            present_node = present_node.next
+        present_node.next = self.head
+        place = size - k - 1
+        present_node = self.head
+        i = 0
+        while i < place:
+            present_node = present_node.next
+            i = i + 1
+        self.head = present_node.next
+        present_node.next = None
+        self.display()
+        
+    
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+LL = LinkedList()
+LL.add_begin(6)
+LL.add_begin(5)
+LL.add_begin(4)
+LL.add_begin(3)
+LL.add_begin(2)
+LL.add_begin(1)
+LL.display()
+LL.RightShift()
+
+        
+        

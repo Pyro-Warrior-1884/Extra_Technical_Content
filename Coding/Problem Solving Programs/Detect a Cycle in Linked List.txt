@@ -1,0 +1,81 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def display(self):
+         if self.head is None:
+             print("Linked List is Empty")
+         else:
+             n = self.head
+             while n is not None:
+                 print(n.data," --> ",end = " ")                
+                 n=n.next
+             print("\n")
+             
+    def add_begin(self,data):
+        new_node = Node(data)
+        new_node.next = self.head 
+        self.head = new_node  
+        
+    def Find_Size(self):
+        present_node = self.head
+        size = 0
+        while present_node is not None:
+            present_node = present_node.next
+            size = size + 1
+        return size
+        
+    def Connect(self):
+        present_node = self.head
+        for i in range(0,self.Find_Size()//2,1):
+            present_node = present_node.next
+        Connection = present_node
+        while present_node.next is not None:
+            present_node = present_node.next
+        present_node.next = Connection
+        
+        
+    def Check_Loop(self):
+        store = set()
+        present_node = self.head
+        while present_node is not None:            
+            if present_node.data in store:
+                print(present_node.data)
+                return present_node.data            
+            store.add(present_node.data)
+            present_node = present_node.next
+            
+        return None
+    
+    def Find_Pos(self,point):
+        present_node = self.head
+        pos = 0
+        while present_node.data != point:
+            present_node = present_node.next
+            pos = pos + 1
+        print("The Loop Starts at ",pos + 1)
+    
+    
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+LL = LinkedList()
+LL.add_begin(1)
+LL.add_begin(2)
+LL.add_begin(3)
+LL.add_begin(4)
+LL.add_begin(5)
+LL.add_begin(6)
+LL.display()
+LL.Connect()
+
+point = LL.Check_Loop()
+if point != None:
+    LL.Find_Pos(point)
+else:
+    print("Not in Loop")
+
+        
+        

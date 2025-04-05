@@ -1,0 +1,54 @@
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def display(self):
+        if self.head is None:
+            print("Linked List is Empty")
+        else:
+            n = self.head
+            while n is not None:
+                print(n.data," --> ",end = " ")                
+                n=n.next
+            print("\n")
+            
+    def add_begin(self,data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+        else:
+            new_node.next = self.head 
+            self.head = new_node    
+            
+    def find_and_delete_node(self,val):
+        header = self.head 
+        while header.data != val and header is not None:
+            header = header.next
+          
+        if header is None:
+            print("Node not Found in the List")
+        else:
+            t = header
+        self.delete_node(t)
+
+    def delete_node(self,t):
+        
+        t.data = t.next.data #4
+        t.next = t.next.next
+        LL.display()
+        
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next =  None
+        
+LL = LinkedList()
+LL.add_begin(5)
+LL.add_begin(4)
+LL.add_begin(3)
+LL.add_begin(2)
+LL.add_begin(1)
+LL.find_and_delete_node(3)
+
+

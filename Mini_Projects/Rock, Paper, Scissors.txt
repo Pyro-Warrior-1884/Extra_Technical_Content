@@ -1,0 +1,108 @@
+import random
+def user_name_fun():    
+    user_name = "User"
+    name_choice = input("Would You Like to Name Yourself(y/n): ")
+    if name_choice.upper() == 'Y':
+        user_name = input("Enter Your User Name: ")    
+    print("User Name: ",user_name,"\n")    
+    return user_name
+
+def computer_name_fun():
+    computer_name = "Computer"
+    name_choice = input("Would You Like to Name Your Opponent(y/n): ")
+    if name_choice.upper() == 'Y':
+        computer_name = input("Enter Your Opponent Name: ")    
+    print("Opponent Name: ",computer_name,"\n")    
+    return computer_name
+
+def calculate_score(user_score,computer_score,user_name,computer_name):
+    print("Score:")
+    print(user_name,": ",user_score)
+    print(computer_name,": ",computer_score)
+    
+    if user_score > computer_score:
+        print(user_name," Has Won\n")
+    elif computer_score > user_score:
+        print(computer_name," Has Won\n")
+    else:
+        print(user_name," and ",computer_name," Have Tied\n")    
+    return
+
+def game(user_name,computer_name):
+    user_score = 0
+    computer_score = 0
+    container = ["Rock","Paper","Scissors"]   
+    Rounds = int(input("\nHow Many Rounds Do You Want To Play: "))
+    print("Enter the Number of Your Choice \n1. Rock \n2. Paper \n3. Scissors\n")
+    Present = 0
+    while Present < Rounds:
+        index = random.randrange(0, 3)  
+        computer_choice = container[index]
+        user_index= int(input("Enter Your Input: "))  
+        user_index = user_index - 1        
+        user_choice = container[user_index]
+        while user_choice != "Rock" and user_choice != "Paper" and user_choice != "Scissors":
+            print(container)
+            user_choice = input("Your Entered Values is Incorrect, Please Re Enter Your Choice: ")
+            
+    
+        if user_choice == computer_choice:
+            print(user_choice," Vs ",computer_choice)
+            print("Tie\n")
+        else:
+            if user_choice == container[0]:            
+                if index == 1:
+                    print("Rock Vs Paper")
+                    print(computer_name," Wins\n")
+                    computer_score +=1
+                else:
+                    print("Rock Vs Scissors")
+                    print(user_name," Wins\n")
+                    user_score += 1
+            elif user_choice == container[1]:
+                if index == 0:
+                    print("Paper Vs Rock")   
+                    print(user_name," Wins\n")
+                    user_score += 1
+                else:
+                    print("Paper Vs Scissors")
+                    print(computer_name," Wins\n")
+                    computer_score +=1
+            else:
+                if index == 0:
+                    print("Scissors Vs Rock")  
+                    print(computer_name," Wins\n")
+                    computer_score +=1
+                else:
+                    print("Scissors Vs Paper")
+                    print(user_name," Wins\n")
+                    user_score += 1
+        Present+=1
+                    
+    calculate_score(user_score,computer_score,user_name,computer_name)    
+    game_choice = input("Would You Like to Play Another Game(y/n): ")
+    if game_choice.upper() == 'Y':
+        game(user_name,computer_name)
+    else:
+        return
+        
+        
+        
+                
+print("Welcome To Rock, Paper, Scissors \n")  
+start = input("Would You Like to Start Game(y/n): ")  
+
+if start.upper() == 'Y':
+    user_name = user_name_fun()    
+    computer_name = computer_name_fun()
+    
+    print("Let The Game Begin")    
+    game(user_name,computer_name)
+    print("\nThank You for Playing My Game")
+    print("Special Thanks From The Pyro Warrior")
+        
+else:
+    print("Have A Nice Day")
+    
+
+

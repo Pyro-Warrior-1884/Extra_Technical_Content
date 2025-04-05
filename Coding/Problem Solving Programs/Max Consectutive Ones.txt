@@ -1,0 +1,16 @@
+prices = [1, 0, 1, 1,1,1,1, 0, 1,1,1,1]
+
+i = 0
+max_one = 0
+count = 0
+while i<len(prices):
+    while prices[i] == 1:
+        count += 1
+        i += 1
+        if i >= len(prices):
+            break
+    if count > max_one:
+        max_one = count
+        count = 0
+    i += 1
+print(max_one)
